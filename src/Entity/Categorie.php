@@ -51,8 +51,8 @@ class Categorie implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return [
-            "id" => $this->id,
-            "name" => $this->name
+            "id" => $this->getId(),
+            "name" => $this->getName()
         ];
     }
 }
