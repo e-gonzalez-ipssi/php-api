@@ -33,4 +33,15 @@ class ArticleControlleur extends DefaultControlleur
     {
         $this->jsonResponse($this->model->find($id));
     }
+
+    /**
+     * Créer un nouvelle article
+     * 
+     * @return void
+     */
+    public function save(): void
+    {
+        $lastId = $this->model->saveArticle($_POST);
+        $this->jsonResponse($this->model->find($lastId));
+    }
 }
