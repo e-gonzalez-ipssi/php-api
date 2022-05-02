@@ -7,4 +7,6 @@ define("ROOT", dirname(__DIR__));
 require ROOT . "/vendor/autoload.php";
 
 // (new CategorieControlleur)->index();
-(new ArticleControlleur)->index();
+// (new ArticleControlleur)->index();
+(new CategorieControlleur)->single(1);
+// (new ArticleControlleur)->single(1);

@@ -5,16 +5,32 @@ namespace App\Controlleur;
 use App\Model\CategorieModel;
 use Core\Controller\DefaultControlleur;
 
-class CategorieControlleur extends DefaultControlleur
+final class CategorieControlleur extends DefaultControlleur
 {
+    private $model;
+
+    public function __construct()
+    {
+        $this->model = new CategorieModel();
+    }
+
     /**
-     * Retoure la liste des catégories
+     * Retourne la liste des catégories
      * 
      * @return void
      */
     public function index(): void
     {
-        $model = new CategorieModel();
-        $this->jsonResponse($model->findAll());
+        $this->jsonResponse($this->model->findAll());
+    }
+
+    /**
+     * Retourne la catégorie d'id donnée
+     * 
+     * @return void
+     */
+    public function single(int $id): void
+    {
+        $this->jsonResponse($this->model->find($id));
     }
 }

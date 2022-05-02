@@ -7,14 +7,30 @@ use Core\Controller\DefaultControlleur;
 
 class ArticleControlleur extends DefaultControlleur
 {
+    private $model;
+
+    public function __construct()
+    {
+        $this->model = new ArticleModel();
+    }
+
     /**
-     * Retoure la liste des catégories
+     * Retoure la liste des articles
      * 
      * @return void
      */
     public function index(): void
     {
-        $model = new ArticleModel();
-        $this->jsonResponse($model->findAll());
+        $this->jsonResponse($this->model->findAll());
+    }
+
+    /**
+     * Retourne l'article d'id donnée
+     * 
+     * @return void
+     */
+    public function single(int $id): void
+    {
+        $this->jsonResponse($this->model->find($id));
     }
 }
