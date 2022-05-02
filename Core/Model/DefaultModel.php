@@ -22,7 +22,9 @@ class DefaultModel extends Database
 
             return $query->fetchAll();
         } catch (\PDOException $e) {
+            // s'il y a une erreur, on retourne le message avec un code d'erreur adapté
             header("content-type: application/json");
+            // ici le code 400
             header("http_response_code: 400");
             echo json_encode($e->getMessage());
         }
