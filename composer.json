@@ -4,5 +4,8 @@
             "App\\": "src/",
             "Core\\": "Core/"
         }
+    },
+    "require": {
+        "php": "8.*"
     }
 }

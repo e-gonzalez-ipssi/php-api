@@ -1,12 +1,8 @@
 <?php
 
-use App\Model\CategorieModel;
+use App\Controlleur\CategorieControlleur;
 
 define("ROOT", dirname(__DIR__));
 require ROOT . "/vendor/autoload.php";
 
-$model = new CategorieModel();
-
-header("content-type: application/json");
-
-echo json_encode($model->findAll());
+(new CategorieControlleur)->index();
