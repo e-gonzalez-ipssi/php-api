@@ -12,6 +12,12 @@ final class CategorieModel extends DefaultModel
     protected string $table = "categorie";
     protected string $entity = "Categorie";
 
+    /**
+     * Ajoute une catégorie a la database
+     * 
+     * @param array $categorie
+     * @return ?int
+     */
     public function saveCategorie(array $categorie): ?int
     {
         $stmt = "INSERT INTO $this->table (name) VALUES (:name)";

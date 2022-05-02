@@ -12,6 +12,12 @@ final class ArticleModel extends DefaultModel
     protected string $table = "article";
     protected string $entity = "Article";
 
+    /**
+     * Ajoute un article a la database
+     * 
+     * @param array $article
+     * @return ?int
+     */
     public function saveArticle(array $article): ?int
     {
         $stmt = "INSERT INTO $this->table (title, content, categorie_id) VALUES (:title, :content, :categorie_id)";
