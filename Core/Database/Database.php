@@ -21,5 +21,6 @@ class Database
                 \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ
             ]
         );
+        $this->pdo->exec("SET NAMES UTF8");
     }
 }
