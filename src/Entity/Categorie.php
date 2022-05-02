@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-class Categorie
+use JsonSerializable;
+
+class Categorie implements JsonSerializable
 {
     // Uniquement pour php 
     // readonly met la propriété en lecture uniquement
@@ -44,5 +46,13 @@ class Categorie
         $this->name = $name;
 
         return $this;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            "id" => $this->id,
+            "name" => $this->name
+        ];
     }
 }
