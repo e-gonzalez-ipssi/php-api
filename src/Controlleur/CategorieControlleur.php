@@ -27,10 +27,23 @@ final class CategorieControlleur extends DefaultControlleur
     /**
      * Retourne la catégorie d'id donnée
      * 
+     * @param int $id
+     * 
      * @return void
      */
     public function single(int $id): void
     {
         $this->jsonResponse($this->model->find($id));
+    }
+
+    /**
+     * Créer une nouvelle catégorie
+     * 
+     * @return void
+     */
+    public function save(): void
+    {
+        $lastId = $this->model->saveCategorie($_POST);
+        $this->jsonResponse($this->model->find($lastId));
     }
 }
