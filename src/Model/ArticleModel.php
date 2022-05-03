@@ -5,7 +5,9 @@ namespace App\Model;
 use Core\Model\DefaultModel;
 
 /**
- * @method Categorie[] findAll()
+ * @method Article[] findAll()
+ * @method Article find(int $id)
+ * @method ?int saveArticle(array $article)
  */
 final class ArticleModel extends DefaultModel
 {

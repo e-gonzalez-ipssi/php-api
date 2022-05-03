@@ -6,6 +6,8 @@ use Core\Model\DefaultModel;
 
 /**
  * @method Categorie[] findAll()
+ * @method Categorie find(int $id)
+ * @method ?int saveCategorie(array $categorie)
  */
 final class CategorieModel extends DefaultModel
 {
@@ -16,6 +18,7 @@ final class CategorieModel extends DefaultModel
      * Ajoute une catégorie a la database
      * 
      * @param array $categorie
+     * 
      * @return ?int
      */
     public function saveCategorie(array $categorie): ?int
