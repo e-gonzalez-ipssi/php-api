@@ -64,4 +64,19 @@ final class CategorieControlleur extends DefaultControlleur
             $this->jsonResponse($this->model->find($id), 201);
         }
     }
+
+    /**
+     * Delete une catégorie
+     * 
+     * @param int $id
+     * 
+     * @return void
+     * 
+     */
+    public function delete(int $id)
+    {
+        if ($this->model->delete($id)) {
+            $this->jsonResponse("Catégorie supprimée avec succès");
+        }
+    }
 }
