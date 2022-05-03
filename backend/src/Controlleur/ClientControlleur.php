@@ -12,6 +12,28 @@ final class ClientControlleur extends DefaultControlleur
         $this->model = new ClientModel;
     }
 
+    /**
+     * Retourne la liste des clients
+     * 
+     * @return void
+     */
+    public function index(): void
+    {
+        $this->jsonResponse($this->model->findAll());
+    }
+
+    /**
+     * Retourne le client d'id donnée
+     * 
+     * @param int $id
+     * 
+     * @return void
+     */
+    public function single(int $id): void
+    {
+        $this->jsonResponse($this->model->find($id));
+    }
+
     public function save($client): void
     {
         $apiKey = md5(uniqid());
