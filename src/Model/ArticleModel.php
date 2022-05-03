@@ -20,7 +20,7 @@ final class ArticleModel extends DefaultModel
      * @param array $article
      * @return ?int
      */
-    public function saveArticle(array $article): ?int
+    public function saveArticle(array $article): int|false
     {
         $stmt = "INSERT INTO $this->table (title, content, categorie_id) VALUES (:title, :content, :categorie_id)";
         $prepare = $this->pdo->prepare($stmt);
@@ -28,9 +28,8 @@ final class ArticleModel extends DefaultModel
         if ($prepare->execute($article)) {
             // récupéré l'id du dernier ajout a la bd
             return $this->pdo->lastInsertId($this->table);
-        } else {
-            $this->jsonResponse("Erreur lors de l'insersion d'un article", 400);
         }
+        return false;
     }
 
     /**

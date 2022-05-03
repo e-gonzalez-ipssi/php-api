@@ -21,7 +21,7 @@ final class CategorieModel extends DefaultModel
      * 
      * @return ?int
      */
-    public function saveCategorie(array $categorie): ?int
+    public function saveCategorie(array $categorie): int|false
     {
         $stmt = "INSERT INTO $this->table (name) VALUES (:name)";
         $prepare = $this->pdo->prepare($stmt);
@@ -32,9 +32,8 @@ final class CategorieModel extends DefaultModel
         if ($prepare->execute()) {
             // récupéré l'id du dernier ajout a la bd
             return $this->pdo->lastInsertId($this->table);
-        } else {
-            $this->jsonResponse("Erreur lors de l'insersion d'une catégorie", 400);
         }
+        return false;
     }
 
     /**
