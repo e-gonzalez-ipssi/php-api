@@ -26,11 +26,35 @@ final class CategorieModel extends DefaultModel
         $stmt = "INSERT INTO $this->table (name) VALUES (:name)";
         $prepare = $this->pdo->prepare($stmt);
 
-        if ($prepare->execute($categorie)) {
+        $name = htmlspecialchars($categorie["name"]);
+        $prepare->bindParam(":name", $name);
+
+        if ($prepare->execute()) {
             // récupéré l'id du dernier ajout a la bd
             return $this->pdo->lastInsertId($this->table);
         } else {
             $this->jsonResponse("Erreur lors de l'insersion d'une catégorie", 400);
         }
+    }
+
+    /**
+     * Update une catégorie
+     * 
+     * @param int $id
+     * @param array $categorie
+     * 
+     * @return bool
+     * 
+     */
+    public function updateCategorie(int $id, array $categorie): ?bool
+    {
+        $stmt = "UPDATE $this->table SET name=:name WHERE id=:id;";
+        $prepare = $this->pdo->prepare($stmt);
+
+        $name = htmlspecialchars($categorie["name"]);
+        $prepare->bindParam(":name", $name);
+        $prepare->bindParam(":id", $id);
+
+        return $prepare->execute();
     }
 }

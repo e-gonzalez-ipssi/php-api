@@ -39,11 +39,29 @@ final class CategorieControlleur extends DefaultControlleur
     /**
      * Créer une nouvelle catégorie
      * 
+     * @param array $categorie
+     * 
      * @return void
      */
-    public function save(): void
+    public function save(array $categorie): void
     {
-        $lastId = $this->model->saveCategorie($_POST);
+        $lastId = $this->model->saveCategorie($categorie);
         $this->jsonResponse($this->model->find($lastId));
+    }
+
+    /**
+     * Update une catégorie
+     * 
+     * @param int $id
+     * @param array $categorie
+     * 
+     * @return void
+     * 
+     */
+    public function update(int $id, array $categorie)
+    {
+        if ($this->model->updateCategorie($id, $categorie)) {
+            $this->jsonResponse($this->model->find($id), 201);
+        }
     }
 }
