@@ -1,5 +1,6 @@
 <?php
 
+use App\Security\ApiKeySecurity;
 use Core\Routeur\Routeur;
 
 define("ROOT", dirname(__DIR__));
@@ -19,4 +20,6 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE");
 // indique le temps d'éxistance de ces données
 header("Access-Controle-Max-Age: 172800");
 
-Routeur::routeur();
+if (ApiKeySecurity::verifyApiKey()) {
+    Routeur::routeur();
+}
