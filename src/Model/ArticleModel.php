@@ -32,4 +32,28 @@ final class ArticleModel extends DefaultModel
             $this->jsonResponse("Erreur lors de l'insersion d'un article", 400);
         }
     }
+
+    /**
+     * Update un article
+     * 
+     * @param int $id
+     * @param array $article
+     * 
+     * @return bool
+     * 
+     */
+    public function updateArticle(int $id, array $article): ?bool
+    {
+        $stmt = "UPDATE $this->table SET title=:title, content=:content, categorie_id=:categorie_id WHERE id=:id;";
+        $prepare = $this->pdo->prepare($stmt);
+
+        $title = htmlspecialchars($article["title"]);
+        $prepare->bindParam(":title", $title);
+        $content = htmlspecialchars($article["content"]);
+        $prepare->bindParam(":content", $content);
+        $prepare->bindParam(":categorie_id", $article["categorie_id"]);
+        $prepare->bindParam(":id", $id);
+
+        return $prepare->execute();
+    }
 }
