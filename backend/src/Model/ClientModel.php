@@ -23,8 +23,8 @@ class ClientModel extends DefaultModel
 
     public function findByApiKey($apiKey): Client|false
     {
-        $stmt = "SELECT * FROM $this->table WHERE apiKey=$apiKey";
-        $query = $this->pdo->query($stmt, \PDO::FETCH_CLASS, self::class);
+        $stmt = "SELECT * FROM $this->table WHERE apiKey='$apiKey'";
+        $query = $this->pdo->query($stmt, \PDO::FETCH_CLASS, "App\\Entity\\Client");
         return $query->fetch();
     }
 }

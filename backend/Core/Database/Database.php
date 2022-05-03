@@ -9,8 +9,8 @@ class Database
     public function __construct(
         private string $host = "localhost:3306",
         private string $dbname = "blog",
-        private string $user = "esteban",
-        private string $pass = "root"
+        private string $user = "root",
+        private string $pass = ""
     ) {
         $this->pdo = new \PDO(
             "mysql:host=$this->host;dbname=$this->dbname",

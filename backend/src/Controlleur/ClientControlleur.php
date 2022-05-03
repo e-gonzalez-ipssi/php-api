@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controlleur;
 
 use Core\Controller\DefaultControlleur;
 use App\Model\ClientModel;
