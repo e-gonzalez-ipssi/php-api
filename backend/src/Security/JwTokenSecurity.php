@@ -25,7 +25,7 @@ class JwTokenSecurity
 
         $defaultPayload = [
             "iss" => "http://localhost:8000",
-            "exp" => $exp,
+            "exp" => $exp->getTimestamp(),
         ];
         $payload = array_merge($payload, $defaultPayload);
 
