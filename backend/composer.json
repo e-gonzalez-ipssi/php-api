@@ -6,6 +6,8 @@
         }
     },
     "require": {
-        "php": "8.*"
+        "php": "8.*",
+        "firebase/php-jwt": "^6.1",
+        "paragonie/sodium_compat": "^1.17"
     }
 }

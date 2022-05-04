@@ -203,3 +203,5 @@ ALTER TABLE `user`
 --
 ALTER TABLE `article`
   ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`);
+
+ALTER TABLE user ADD nom varchar(255) NOT NULL AFTER password, ADD prenom varchar(255) NOT NULL AFTER nom, ADD telephone varchar(255) NOT NULL AFTER prenom;

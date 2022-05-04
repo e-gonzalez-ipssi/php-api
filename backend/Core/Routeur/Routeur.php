@@ -28,7 +28,16 @@ class Routeur
                         break;
                     case 'POST':
                         if (!empty($_POST)) {
-                            $controlleur->save($_POST);
+                            if (isset($path[2]) && is_string($path[2])) {
+                                $method = $path[2];
+                                if (method_exists($controlleur, $method)) {
+                                    $controlleur->$method($_POST);
+                                } else {
+                                    throw new \Exception("La method $method n'éxiste pas", 404);
+                                }
+                            } else {
+                                $controlleur->save($_POST);
+                            }
                         } else {
                             throw new \Exception("Donné manquante pour l'ajout en BDD", 400);
                         }
