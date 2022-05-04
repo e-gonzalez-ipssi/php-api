@@ -2,6 +2,7 @@
 
 namespace Core\Controller;
 
+use App\Security\JwTokenSecurity;
 use Core\Traits\JsonTrait;
 
 /**
@@ -10,4 +11,15 @@ use Core\Traits\JsonTrait;
 class DefaultControlleur
 {
     use JsonTrait;
+
+    public function isGranted(string $role): ?bool
+    {
+        $user = (new JwTokenSecurity())->decodeToken();
+
+        if (!in_array($role, $user["roles"])) {
+            throw new \Exception("Vous n'avez pas les droits pour effectué cette opération", 403);
+        }
+
+        return true;
+    }
 }

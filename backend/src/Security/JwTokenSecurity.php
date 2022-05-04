@@ -39,13 +39,4 @@ class JwTokenSecurity
 
         return (array) JWT::decode($token, new Key(self::SIGNATURE, self::ALGO));
     }
-
-    public function isGranted(string $role)
-    {
-        $user = $this->decodeToken();
-
-        if (!in_array($role, $user["roles"])) {
-            throw new \Exception("Vous n'avez pas les droits pour effectué cette opération", 403);
-        }
-    }
 }
