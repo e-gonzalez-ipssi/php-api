@@ -4,6 +4,7 @@ namespace App\Security;
 
 use DateInterval;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class JwTokenSecurity
 {
@@ -29,5 +30,22 @@ class JwTokenSecurity
         $payload = array_merge($payload, $defaultPayload);
 
         return JWT::encode($payload, self::SIGNATURE, self::ALGO);
+    }
+
+    public function decodeToken(): array
+    {
+        $headers = getallheaders();
+        $token = $headers["token"];
+
+        return (array) JWT::decode($token, new Key(self::SIGNATURE, self::ALGO));
+    }
+
+    public function isGranted(string $role)
+    {
+        $user = $this->decodeToken();
+
+        if (!in_array($role, $user["roles"])) {
+            throw new \Exception("Vous n'avez pas les droits pour effectué cette opération", 403);
+        }
     }
 }
